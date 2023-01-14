@@ -3,6 +3,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.driver.models.User;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -22,6 +23,17 @@ public class Blog {
     @ManyToOne
     @JoinColumn
     private User user;
+
+    @OneToMany(mappedBy = "blog",cascade = CascadeType.ALL)
+    List<Image> imageList ;
+
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
+    }
 
     public Blog() {
     }

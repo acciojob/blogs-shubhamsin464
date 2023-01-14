@@ -2,6 +2,7 @@ package com.driver.models;
 import com.driver.models.Blog;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -23,7 +24,9 @@ public class User {
 
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private Blog blog;
+    private List<Blog> BlogWritten;
+
+
 
     public User() {
     }
@@ -66,4 +69,5 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }

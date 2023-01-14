@@ -13,6 +13,10 @@ public class Image {
 
     private String dimensions;
 
+
+    @ManyToOne
+    private Blog blog;
+
     public Image() {
     }
 
