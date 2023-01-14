@@ -74,4 +74,12 @@ public class Blog {
     public void setPubDate(Date pubDate) {
         PubDate = pubDate;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
