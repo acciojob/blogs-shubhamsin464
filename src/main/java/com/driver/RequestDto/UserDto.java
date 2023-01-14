@@ -1,17 +1,6 @@
-package com.driver.models;
-import com.driver.models.Blog;
+package com.driver.RequestDto;
 
-import javax.persistence.*;
-
-
-@Entity
-@Table
-public class User {
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class UserDto {
 
     private String userName;
 
@@ -20,20 +9,6 @@ public class User {
     private String firstName;
 
     private String lastName;
-
-
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private Blog blog;
-
-    public User() {
-    }
-
-    public User(String userName, String password, String firstName, String lastName) {
-        this.userName = userName;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
     public String getUserName() {
         return userName;
