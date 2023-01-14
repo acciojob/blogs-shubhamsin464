@@ -24,6 +24,8 @@ public class BlogService {
 
     @Autowired
     UserRepository userRepository1;
+    @Autowired
+    ImageRepository imageRepository;
 
     public int getAllBlogsfromDb(){
         return showBlogs().size();
@@ -76,6 +78,27 @@ public class BlogService {
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
-        blogRepository1.deleteById(blogId);
+        Blog blog= blogRepository1.findById(blogId).get();
+
+        List<Image> imageList=new ArrayList<>();
+
+        imageList=blog.getImageList();
+        for(Image image: imageList){
+            imageRepository.delete(image);
+        }
+
+        User user= new User();
+        user=blog.getUser();
+        List<Blog> blogList=new ArrayList<>();
+
+        blogList =user.getBlogList();
+
+        blogList.remove(blog);
+
+        user.setBlogList(blogList);
+
+        blogRepository1.delete(blog);
+
+        userRepository1.save(user);
     }
 }
