@@ -14,7 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String userName;
+    private String username;
 
     private String password;
 
@@ -24,26 +24,42 @@ public class User {
 
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private List<Blog> BlogWritten;
+    private List<Blog> BlogList;
 
 
 
     public User() {
     }
 
-    public User(String userName, String password, String firstName, String lastName) {
-        this.userName = userName;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Blog> getBlogList() {
+        return BlogList;
+    }
+
+    public void setBlogList(List<Blog> blogList) {
+        BlogList = blogList;
+    }
+
+    public User(String username, String password, String firstName, String lastName) {
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

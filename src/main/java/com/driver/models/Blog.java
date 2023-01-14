@@ -18,7 +18,7 @@ public class Blog {
     private String content;
 
     @CreationTimestamp
-    private Date createdOn;
+    private Date PubDate;
 
     @ManyToOne
     @JoinColumn
@@ -59,11 +59,19 @@ public class Blog {
         this.content = content;
     }
 
-    public Date getCreatedOn() {
-        return createdOn;
+    public int getId() {
+        return id;
     }
 
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getPubDate() {
+        return PubDate;
+    }
+
+    public void setPubDate(Date pubDate) {
+        PubDate = pubDate;
     }
 }

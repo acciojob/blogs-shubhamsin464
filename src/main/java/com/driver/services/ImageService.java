@@ -6,6 +6,7 @@ import com.driver.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,17 +16,34 @@ public class ImageService {
     @Autowired
     private BlogRepository blogRepository;
 
-//    public Image createAndReturn(Blog blog, String description, String dimensions){
-//        //create an image based on given parameters and add it to the imageList of given blog
-//        Image image = new Image();
-//        image.setDimensions(dimensions);
-//        image.setDescription(description);
-//        Blog blog1 = blogRepository.findAll().getClass(blog);
-//        List<Image> imageList = blog1.getImageList();
-//        imageList.add(image);
-//        blogRepository.save(blog);
-//        return image;
-//    }
+    public Image createAndReturn(Blog blog, String description, String dimensions){
+        //create an image based on given parameters and add it to the imageList of given blog
+
+        Image image = new Image();
+        image.setDimensions(dimensions);
+        image.setDescription(description);
+
+        List<Image> list=new ArrayList<>();
+
+        int id=blog.getId();
+        if(blogRepository.existsById(id)) {
+            Blog newBlog = blogRepository.findById(id).get();
+
+            list = newBlog.getImageList();
+            list.add(image);
+
+            newBlog.setImageList(list);
+
+            image.setBlog(newBlog);
+            blogRepository.save(newBlog);
+        }else {
+            list.add(image);
+            imageRepository2.save(image);
+        }
+
+
+        return image;
+    }
 
     public void deleteImage(Image image){
 
