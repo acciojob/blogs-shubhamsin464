@@ -20,13 +20,13 @@ public class ImageController {
         this.imageRepository = imageRepository;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Image> createAndReturn(@RequestBody Blog blog,
-                                                 @RequestParam String description,
-                                                 @RequestParam String dimensions) {
-        Image image = imageService.createAndReturn(blog, description, dimensions);
-        return new ResponseEntity<>(image, HttpStatus.CREATED);
-    }
+//    @PostMapping("/create")
+//    public ResponseEntity<Image> createAndReturn(@RequestBody Blog blog,
+//                                                 @RequestParam String description,
+//                                                 @RequestParam String dimensions) {
+////        Image image = imageService.createAndReturn(blog, description, dimensions);
+////        return new ResponseEntity<>(image, HttpStatus.CREATED);
+//    }
 
     @GetMapping("/countImagesInScreen/{id}/{screenDimensions}")
     public ResponseEntity<Integer> countImagesInScreen(@PathVariable int id, @PathVariable String screenDimensions){
