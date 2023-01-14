@@ -17,13 +17,7 @@ public class UserService {
     @Autowired
     BlogService blogService3;
 
-    public void createUser(UserDto userDto){
-        User user = new User();
-        user.setUserName(userDto.getUserName());
-        user.setPassword(userDto.getPassword());
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(user.getLastName());
-
+    public void createUser(User user){
         userRepository3.save(user);
     }
 
